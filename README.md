@@ -16,3 +16,5 @@ Proper UI state management and handle errors properly.
 
 ## Screenshot.
 ![2024-07-05 13-24-03 High Res Screenshot](https://github.com/phill21956/Hng_TimbuApp/assets/25683441/94a782ae-c8a8-44a6-92a6-a9181d958575)
+![2024-07-05 14-46-02 High Res Screenshot](https://github.com/phill21956/Hng_TimbuApp/assets/25683441/e5c879ff-7410-417e-8bef-591e9e3c634e)
+![2024-07-05 14-46-20 High Res Screenshot](https://github.com/phill21956/Hng_TimbuApp/assets/25683441/36687bab-b94a-4c60-b9a6-d8b2ffca5a13)
