@@ -7,7 +7,7 @@ class ProductCardWidget extends StatelessWidget {
     required this.cardTitle,
     required this.cardPrice,
   });
-  final String imageCard;
+  final String? imageCard;
   final String cardTitle;
   final String cardPrice;
   @override
@@ -16,12 +16,11 @@ class ProductCardWidget extends StatelessWidget {
       elevation: 3,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         Expanded(
-          child: Image.asset(
-            imageCard,
-            fit: BoxFit.cover,
-          ),
+          child: imageCard != null
+              ? Image.network(imageCard ?? '', fit: BoxFit.cover)
+              : Image.asset('assets/empty.png', fit: BoxFit.cover),
         ),
-         Padding(
+        Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -29,11 +28,9 @@ class ProductCardWidget extends StatelessWidget {
               children: [
                 Text(
                   cardTitle,
-                  style:const TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
-                Text(
-                  cardPrice,
-                ),
+                Text(cardPrice),
               ],
             )),
       ]),

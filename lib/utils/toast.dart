@@ -27,7 +27,6 @@ void toast(String msg,
       textAlign: TextAlign.center,
       style: TextStyle(color: textColor),
     ),
-    // maxWidth: size.width,
     snackPosition: snackPosition ?? SnackPosition.BOTTOM,
     duration: Duration(seconds: duration ?? 2),
   );

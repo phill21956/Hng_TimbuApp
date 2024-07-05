@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hng_timbu_app/utils/colors.dart';
 import 'package:hng_timbu_app/views/product_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,21 +17,25 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 3),
       vsync: this,
-    )..repeat(reverse: true);
-    _animation = Tween<double>(begin: 0.5, end: 1.5).animate(
+    );
+    _animation = Tween<double>(begin: 0.5, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.easeInOut,
       ),
     );
 
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => ProductPage()),
-      );
+    _controller.forward();
+
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const ProductPage()),
+        );
+      }
     });
   }
 
@@ -48,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen>
     final theme = Theme.of(context).textTheme;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: colorsClass.blackColor,
+        backgroundColor: const Color(0xff080808),
         body: Container(
           width: size.width,
           height: size.height,

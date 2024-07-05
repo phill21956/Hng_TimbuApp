@@ -49,6 +49,11 @@ class GetProductsModel {
         "next_page": nextPage,
         "items": List<dynamic>.from(items.map((x) => x.toJson())),
       };
+
+  @override
+  String toString() {
+    return 'GetProductsModel(page: $page, size: $size, total: $total, debug: $debug, previousPage: $previousPage, nextPage: $nextPage, items: $items)';
+  }
 }
 
 class Item {
@@ -72,7 +77,7 @@ class Item {
   DateTime dateCreated;
   DateTime lastUpdated;
   String userId;
-  List<dynamic> photos;
+  List<Photo> photos;
   dynamic prices;
   dynamic stocks;
   List<CurrentPrice> currentPrice;
@@ -141,7 +146,7 @@ class Item {
         dateCreated: DateTime.parse(json["date_created"]),
         lastUpdated: DateTime.parse(json["last_updated"]),
         userId: json["user_id"],
-        photos: List<dynamic>.from(json["photos"].map((x) => x)),
+        photos: List<Photo>.from(json["photos"].map((x) => Photo.fromJson(x))),
         prices: json["prices"],
         stocks: json["stocks"],
         currentPrice: List<CurrentPrice>.from(
@@ -178,7 +183,7 @@ class Item {
         "date_created": dateCreated.toIso8601String(),
         "last_updated": lastUpdated.toIso8601String(),
         "user_id": userId,
-        "photos": List<dynamic>.from(photos.map((x) => x)),
+        "photos": List<dynamic>.from(photos.map((x) => x.toJson())),
         "prices": prices,
         "stocks": stocks,
         "current_price":
@@ -192,6 +197,11 @@ class Item {
         "featured_reviews": featuredReviews,
         "unavailability": List<dynamic>.from(unavailability.map((x) => x)),
       };
+
+  @override
+  String toString() {
+    return 'Item(name: $name, description: $description, uniqueId: $uniqueId, urlSlug: $urlSlug, isAvailable: $isAvailable, isService: $isService, previousUrlSlugs: $previousUrlSlugs, unavailable: $unavailable, unavailableStart: $unavailableStart, unavailableEnd: $unavailableEnd, id: $id, parentProductId: $parentProductId, parent: $parent, organizationId: $organizationId, stockId: $stockId, productImage: $productImage, categories: $categories, dateCreated: $dateCreated, lastUpdated: $lastUpdated, userId: $userId, photos: $photos, prices: $prices, stocks: $stocks, currentPrice: $currentPrice, isDeleted: $isDeleted, availableQuantity: $availableQuantity, sellingPrice: $sellingPrice, discountedPrice: $discountedPrice, buyingPrice: $buyingPrice, extraInfos: $extraInfos, featuredReviews: $featuredReviews, unavailability: $unavailability)';
+  }
 }
 
 class CurrentPrice {
@@ -208,4 +218,65 @@ class CurrentPrice {
   Map<String, dynamic> toJson() => {
         "NGN": List<dynamic>.from(ngn.map((x) => x)),
       };
+  @override
+  String toString() {
+    return 'CurrentPrice(ngn: $ngn)';
+  }
+}
+
+class Photo {
+  String modelName;
+  String modelId;
+  String organizationId;
+  String filename;
+  String url;
+  bool isFeatured;
+  bool saveAsJpg;
+  bool isPublic;
+  bool fileRename;
+  int position;
+
+  Photo({
+    required this.modelName,
+    required this.modelId,
+    required this.organizationId,
+    required this.filename,
+    required this.url,
+    required this.isFeatured,
+    required this.saveAsJpg,
+    required this.isPublic,
+    required this.fileRename,
+    required this.position,
+  });
+
+  factory Photo.fromJson(Map<String, dynamic> json) => Photo(
+        modelName: json["model_name"],
+        modelId: json["model_id"],
+        organizationId: json["organization_id"],
+        filename: json["filename"],
+        url: json["url"],
+        isFeatured: json["is_featured"],
+        saveAsJpg: json["save_as_jpg"],
+        isPublic: json["is_public"],
+        fileRename: json["file_rename"],
+        position: json["position"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "model_name": modelName,
+        "model_id": modelId,
+        "organization_id": organizationId,
+        "filename": filename,
+        "url": url,
+        "is_featured": isFeatured,
+        "save_as_jpg": saveAsJpg,
+        "is_public": isPublic,
+        "file_rename": fileRename,
+        "position": position,
+      };
+
+  @override
+  String toString() {
+    return 'Photo(modelName: $modelName, modelId: $modelId, organizationId: $organizationId, filename: $filename, url: $url, isFeatured: $isFeatured, saveAsJpg: $saveAsJpg, isPublic: $isPublic, fileRename: $fileRename, position: $position)';
+  }
 }
